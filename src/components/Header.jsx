@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Header = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const root = window.document.documentElement;
   root.classList.replace("dark", theme);
   const changeThemeHandler = () => {
@@ -34,13 +34,11 @@ const Header = () => {
         {/* Dark/Light mode button */}
         <button
           onClick={changeThemeHandler}
-          id="theme-toggle"
           className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2"
         >
           {/* <!-- Dark SVG Icon --> */}
           <svg
-            id="theme-toggle-dark-icon"
-            className="w-5 h-5 hidden"
+            className={`w-5 h-5 ${theme == "dark" ? "hidden" : ""}`}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +48,7 @@ const Header = () => {
           {/* <!-- Light SVG Icon --> */}
           <svg
             id="theme-toggle-light-icon"
-            className="w-5 h-5 "
+            className={`w-5 h-5 ${theme == "light" ? "hidden" : ""}`}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
